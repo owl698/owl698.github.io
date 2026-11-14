@@ -1,0 +1,229 @@
+/* S Studio — placeholder site. Plain CSS, no outside requests. */
+
+/* Ysabeau (SIL OFL 1.1), self-hosted variable font. Licence: /assets/fonts/OFL.txt */
+@font-face {
+  font-family: "Ysabeau";
+  src: url("../fonts/ysabeau-latin-wght-normal.woff2") format("woff2");
+  font-weight: 1 1000; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Ysabeau";
+  src: url("../fonts/ysabeau-latin-ext-wght-normal.woff2") format("woff2");
+  font-weight: 1 1000; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Ysabeau";
+  src: url("../fonts/ysabeau-latin-wght-italic.woff2") format("woff2");
+  font-weight: 1 1000; font-style: italic; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Ysabeau";
+  src: url("../fonts/ysabeau-latin-ext-wght-italic.woff2") format("woff2");
+  font-weight: 1 1000; font-style: italic; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --ink: #222;
+  --muted: #6b6b6b;      /* nav grey: the old site's #999, darkened to pass contrast */
+  --soft: #858585;       /* large tagline text */
+  --accent: #600000;     /* the logo's dark red */
+  --line: #e6e6e6;
+  --title: #8c8c8c;      /* page titles: the old #999, a hair darker to stay readable */
+  --max: 1200px;
+  --gap: 20px;
+  /* The pauses: logo … tagline/title … content */
+  --pause: clamp(3rem, 8vw, 6.75rem);
+  --module: 2.5rem;      /* space between photos and text blocks */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: "Ysabeau", "Candara", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: #fff;
+}
+img, video { display: block; max-width: 100%; height: auto; }
+a { color: var(--accent); }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: #fff; padding: .5rem 1rem; z-index: 10;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* Header: menu left, logo centre, social right — as on the Portfolio site */
+.site-header {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 42px var(--gap) 0;
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 305px) 1fr;
+  align-items: start;
+  gap: var(--gap);
+}
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: inline-block;
+  padding: 1px 0;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: .02em;
+}
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--ink); }
+.site-nav li:first-child a { color: var(--ink); font-weight: 500; }
+.logo { justify-self: center; }
+.logo img { width: 305px; max-width: 100%; }
+.social {
+  justify-self: end;
+  display: flex; gap: 1rem;
+  font-size: .95rem;
+}
+.social a { color: var(--muted); text-decoration: none; }
+.social a:hover { color: var(--ink); }
+
+.tagline {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--soft);
+  /* The raison d'être: twice the usual pause above and below */
+  margin: calc(var(--pause) * 2) var(--gap);
+}
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gap) 2rem;
+}
+
+/* Home: two-column grid of project covers, titles on hover or focus */
+.covers {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+.cover a { position: relative; display: block; text-decoration: none; }
+.cover img { width: 100%; aspect-ratio: 202 / 158; object-fit: cover; }
+.cover .title {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, .78);
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  letter-spacing: .03em;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.cover a:hover .title, .cover a:focus-visible .title { opacity: 1; }
+@media (hover: none) {
+  .cover .title {
+    position: static; opacity: 1; background: none;
+    padding: .5rem 0 1rem; font-size: 1.1rem;
+  }
+}
+
+/* Inner pages */
+.page-title {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.25;
+  color: var(--title);
+  margin: var(--pause) 0;
+}
+.text {
+  max-width: 44rem;
+  margin: var(--module) auto;
+  text-align: center;
+}
+.text p { margin: 0 0 1rem; }
+.figure { margin: 0 0 var(--module); }
+.figure img, .figure video { width: 100%; }
+.video { margin: 0 0 var(--module); }
+.video video { width: 100%; background: #111; }
+
+/* Image grids (Portfolio "photo grid" sections) */
+.grid {
+  columns: 3 260px;
+  column-gap: 8px;
+  margin: 0 0 var(--module);
+}
+.grid figure { margin: 0 0 8px; break-inside: avoid; }
+.grid figcaption {
+  font-size: .9rem; color: var(--muted);
+  padding: .25rem 0 0;
+}
+
+/* Reviews */
+.quote { max-width: 44rem; margin: var(--module) auto; text-align: center; }
+.quote p { margin: 0 0 1rem; }
+
+/* Contact */
+.contact-links { list-style: none; padding: 0; margin: 0 0 1rem; }
+.button {
+  display: inline-block;
+  padding: .6rem 1.4rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .95rem;
+}
+.button:hover { background: var(--accent); color: #fff; }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  max-width: var(--max);
+  margin: var(--pause) auto 0;
+  padding: 2.5rem var(--gap) 3rem;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.site-footer a { color: var(--muted); }
+.to-top { display: inline-block; margin-bottom: .75rem; }
+
+/* Small screens: stack header, menu in a row */
+@media (max-width: 700px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-top: 20px;
+  }
+  .site-nav { order: 2; }
+  .site-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1rem; }
+  .logo { order: 1; }
+  .logo img { width: 240px; }
+  .social { order: 3; justify-self: center; }
+  .covers { grid-template-columns: 1fr; }
+  .grid { columns: 2 140px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
